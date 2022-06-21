@@ -1,0 +1,49 @@
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormArray, FormControl, Validators, FormArrayName, FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EmBoxesService } from '../emboxes.service';
+
+@Component({
+  selector: 'app-add-embox',
+  templateUrl: './add-embox.component.html',
+  styleUrls: ['./add-embox.component.css']
+})
+export class AddEmboxComponent implements OnInit {
+  addEmBoxForm!: FormGroup;
+  constructor(public emBoxesService:EmBoxesService, private fb:FormBuilder, public activatedrout: ActivatedRoute,public router: Router) { }
+
+  ngOnInit(): void {
+
+    this.addEmBoxForm = new FormGroup(
+      {
+        emBoxes:this.fb.array([]),
+      })  
+  }
+   addEmBox(): void {
+    this.emBox.push(new FormGroup({
+      imageSource:new FormControl(null,[Validators.required]),
+      employeeName: new FormControl(null, [Validators.required]),
+      designation: new FormControl(null, [Validators.required]),
+      emailId:new FormControl(null,[Validators.required]),
+      phone: new FormControl(null, [Validators.required]),
+      address: new FormControl(null, [Validators.required]),
+
+  }))
+ }
+
+ 
+
+ get emBox(): FormArray {
+  return (this.addEmBoxForm.get("emBoxes")) as FormArray;
+}
+ 
+saveEmBoxes(): void {
+  console.log(this.addEmBoxForm);
+  if (this.addEmBoxForm) {
+    this.emBoxesService.addEmBoxes(this.addEmBoxForm.value.emBoxes);
+    console.log(this.emBoxesService.getEmBoxes());
+    
+  }
+   this.router.navigate(["embox"]);
+ }
+}

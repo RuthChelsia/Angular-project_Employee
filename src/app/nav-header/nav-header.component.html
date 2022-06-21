@@ -1,0 +1,26 @@
+
+<mat-card>
+    <div>
+        <a href="#list">
+            <mat-icon>menu</mat-icon>
+        </a>
+        <mat-form-field class="search">
+            <span matPrefix> </span>
+            <input type="tel" matInput placeholder="Search" name="search">
+            <button matSuffix mat-button>
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+        <a class="lefticons" href="#settings">
+            <mat-icon>settings</mat-icon>
+        </a>
+        <a class="lefticons" href="#apps">
+            <mat-icon>apps</mat-icon>
+        </a>
+        <span>
+            <button mat-raised-button color="primary" (click)="goToAddEmBox()">Add EmpBox</button>
+            <button mat-raised-button color="primary" (click)="goToEmBox()">EmpBox</button>
+        </span>
+    </div>
+    
+</mat-card>

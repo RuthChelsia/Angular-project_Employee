@@ -1,0 +1,78 @@
+<mat-card>
+    <button mat-raised-button (click)="addEmBox()">Add EmpBox</button>
+    <form [formGroup]="addEmBoxForm">
+        <div formArrayName="emBoxes">
+            <div *ngFor="let emBox of emBox.controls;let i=index">
+                <div [formGroupName]="i">
+                    <div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Image Source</mat-label>
+                            <input matInput formControlName="imageSource">
+                        </mat-form-field>
+
+                    </div>
+                    <mat-error
+                        *ngIf="emBox?.get('imageSource')?.hasError('required') && emBox?.get('imageSource')?.touched">
+                        Please enter Image Source </mat-error>
+
+                    <div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Employee Name</mat-label>
+                            <input matInput formControlName="employeeName">
+                        </mat-form-field>
+
+                    </div>
+                    <mat-error
+                        *ngIf="emBox?.get('employeeName')?.hasError('required') && emBox?.get('employeeName')?.touched">
+                        Please enter Employee Name </mat-error>
+
+                    <div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Designation</mat-label>
+                            <input matInput formControlName="designation">
+                        </mat-form-field>
+                    </div>
+                    <mat-error
+                        *ngIf="emBox?.get('designation')?.hasError('required') && emBox?.get('designation')?.touched">
+                        Please enter Designation </mat-error>
+
+
+                    <div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Email ID</mat-label>
+                            <input matInput formControlName="emailId">
+                        </mat-form-field>
+
+                    </div>
+                    <mat-error
+                        *ngIf="emBox?.get('emailId')?.hasError('required') && emBox?.get('emailId')?.touched">Please
+                        enter Email ID </mat-error>
+
+                    <div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Phone</mat-label>
+                            <input matInput formControlName="phone">
+                        </mat-form-field>
+
+                    </div>
+                    <mat-error *ngIf="emBox?.get('phone')?.hasError('required') && emBox?.get('phone')?.touched">
+                        Please enter Phone No</mat-error>
+
+                    <div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Address </mat-label>
+                            <input matInput formControlName="address">
+                        </mat-form-field>
+                    </div>
+                    <mat-error
+                        *ngIf="emBox?.get('address')?.hasError('required') && emBox?.get('address')?.touched">Please
+                        enter Address </mat-error>
+
+
+
+                </div>
+            </div>
+        </div>
+    </form>
+    <button mat-raised-button color="accent" (click)="saveEmBoxes()" [disabled]="addEmBoxForm?.invalid">Save</button>
+</mat-card>

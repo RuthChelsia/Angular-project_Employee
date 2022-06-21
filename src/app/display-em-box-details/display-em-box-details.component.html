@@ -1,0 +1,3 @@
+<app-embox [emBox]="emBox" *ngFor="let emBox of emBox" (employeeClicked)="showEmpDetails($event)"></app-embox>
+<app-emp-details [emBox]="selectedEmployee" ></app-emp-details>
+ 
