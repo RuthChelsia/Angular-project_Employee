@@ -17,12 +17,12 @@ export class NavHeaderComponent implements OnInit {
   }
   goToAddEmBox(): void{
  
-    this.router.navigate(["AddEmBox"]);
+    this.router.navigate(["/addEmBox"]);
     
     
   }
   goToEmBox(): void{
-    this.router.navigate(["embox"]);
+    this.router.navigate(["/home"]);
   }
 
 }

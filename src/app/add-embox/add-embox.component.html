@@ -1,9 +1,16 @@
 <mat-card>
     <button mat-raised-button (click)="addEmBox()">Add EmpBox</button>
     <form [formGroup]="addEmBoxForm">
-        <div formArrayName="emBoxes">
+        <div formArrayName="emBox">
             <div *ngFor="let emBox of emBox.controls;let i=index">
                 <div [formGroupName]="i">
+                    <div>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Emp ID</mat-label>
+                            <input matInput formControlName="empId">
+                        </mat-form-field>
+
+                    </div>
                     <div>
                         <mat-form-field appearance="fill">
                             <mat-label>Image Source</mat-label>

@@ -16,8 +16,10 @@ import {MatCardModule} from '@angular/material/card';
 import { NavHeaderComponent } from './nav-header/nav-header.component'; 
 import {MatIconModule} from '@angular/material/icon';
 import { HomeComponent } from './home/home.component';
-import { DisplayEmBoxComponent } from './display-em-box/display-em-box.component';
-import { DisplayEmBoxDetailsComponent } from './display-em-box-details/display-em-box-details.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from 'src/environments/environment';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,8 +28,7 @@ import { DisplayEmBoxDetailsComponent } from './display-em-box-details/display-e
     EmpDetailsComponent,
     NavHeaderComponent,
     HomeComponent,
-    DisplayEmBoxComponent,
-    DisplayEmBoxDetailsComponent
+  
     
   ],
   imports: [
@@ -41,6 +42,9 @@ import { DisplayEmBoxDetailsComponent } from './display-em-box-details/display-e
     MatButtonModule,
     MatCardModule,
     MatIconModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    HttpClientModule,
 
 
   ],

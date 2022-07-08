@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EmBox } from '../embox/em';
+import { Router } from '@angular/router';
+import { EmBox, NewEmbox } from '../embox/em';
 import { EmBoxesService } from '../emboxes.service';
 
 @Component({
@@ -10,17 +11,16 @@ import { EmBoxesService } from '../emboxes.service';
 export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
-    this.emBoxesService.emBox$.subscribe((emBox: EmBox[]) => {
-      this.emBox = emBox;
+    this.emBoxesService.getEmBoxes().subscribe((emBox: NewEmbox) => {
+      this.emBox = emBox.emBox;
       console.log(this.emBox);
     });
   }
-  constructor(public emBoxesService:EmBoxesService) { }
-  selectedEmployee?: EmBox;
+  constructor(public emBoxesService:EmBoxesService,private router:Router) { }
   emBox!: EmBox[];
 
   showEmpDetails(emp: EmBox): void {
-    this.selectedEmployee = emp;
+    this.router.navigate(["/employeeDetails",emp.empId])
 }
 
 }

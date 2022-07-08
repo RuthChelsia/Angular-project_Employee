@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "employeeproject-ba6c0": {
+      "hosting": {
+        "employeeproject": [
+          "employeeproject-ba6c0"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "employeeproject-ba6c0"
+  }
+}

@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { EmBox } from './embox/em';
+import { EmBox, NewEmbox } from './embox/em';
 
 
 @Injectable({
@@ -8,23 +9,19 @@ import { EmBox } from './embox/em';
 })
 export class EmBoxesService {
   
-  
-  emBox!: BehaviorSubject<EmBox[]>;
+   emBox: BehaviorSubject<EmBox[]>;
+   emBox$: Observable<EmBox[]>;
 
-  
-  emBox$!: Observable<EmBox[]>;
-
-
-  
-  constructor() {
+   constructor(public httpClient:HttpClient) {
     this.emBox = new BehaviorSubject<EmBox[]>([]);
     this.emBox$ = this.emBox.asObservable();
   }
 
-  addEmBoxes(emBox:EmBox[]): void{
-    this.emBox.next(emBox);
+  public  addEmBoxes(emBox:NewEmbox): void{
+    this.httpClient.patch("https://employeeproject-ba6c0-default-rtdb.firebaseio.com/emBox.json",emBox).subscribe(); 
+    this.emBox.next(emBox.emBox);
   }
-  getEmBoxes(): EmBox[]{
-    return this.emBox.value;
+  public getEmBoxes(): Observable<NewEmbox>{
+    return this.httpClient.get<NewEmbox>("https://employeeproject-ba6c0-default-rtdb.firebaseio.com/emBox.json");
   }
 }
